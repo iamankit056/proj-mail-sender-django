@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Home Page</title>
+{% endblock head %}
+
+{% block main %}
+<div class="pt-4 container">
+    <div class="row">
+        <div class="mb-3 col-md-6 border">
+            <h1>Send Mail</h1>
+            <form action="{% url 'send_mail_url' %}" method="post">
+                {% csrf_token %}
+                <label for="reciver" class="form-label">Reciver</label>
+                <select name="reciver_email" id="reciver" class="mb-3 form-select">
+                    <option value="None">select here</option>
+                    {% for user in users %}
+                    <option value="{{user.email}}">{{user.username}}</option>                    
+                    {% endfor %}
+                </select>
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" name="subject" class="mb-3 form-control">
+                <label for="body" class="form-label">Body</label>
+                <textarea name="body" id="body" class="mb-3 form-control" cols="30" rows="10"></textarea>
+                <button type="submit" class="mb-3 btn btn-primary">send</button>
+            </form>
+        </div>
+        <div class="mb-3 col-md-6 border">
+            <h1>Send Mass Mail</h1>
+            <form action="{% url 'send_mass_mail_url' %}" method="post">
+                {% csrf_token %}
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" name="subject" class="mb-3 form-control">
+                <label for="body" class="form-label">Body</label>
+                <textarea name="body" id="body" class="mb-3 form-control" cols="30" rows="10"></textarea>
+                <button type="submit" class="mb-3 btn btn-primary">send</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}
