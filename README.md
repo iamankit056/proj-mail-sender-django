@@ -1,0 +1,1 @@
+# proj-mail-sender-django
