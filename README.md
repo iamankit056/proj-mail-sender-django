@@ -1,1 +1,1 @@
-# proj-mail-sender-django
+# proj mail sender django
